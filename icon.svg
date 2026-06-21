@@ -1,13 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <rect width="512" height="512" rx="120" fill="#fff4f7"/>
-  <circle cx="256" cy="220" r="120" fill="#f4728b"/>
-  <text x="256" y="255"
-        text-anchor="middle"
-        font-size="120"
-        font-family="Georgia, serif"
-        font-weight="bold"
-        fill="white">R</text>
-  <text x="256" y="410"
-        text-anchor="middle"
-        font-size="90">🌹</text>
+  <circle cx="256" cy="210" r="112" fill="#f4728b"/>
+  <text x="256" y="252" text-anchor="middle" font-size="128" font-family="Georgia, serif" font-weight="bold" fill="white">R</text>
+  <text x="256" y="398" text-anchor="middle" font-size="92">🌹</text>
 </svg>

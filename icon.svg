@@ -1,6 +1,63 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="120" fill="#fff4f7"/>
-  <circle cx="256" cy="210" r="112" fill="#f4728b"/>
-  <text x="256" y="252" text-anchor="middle" font-size="128" font-family="Georgia, serif" font-weight="bold" fill="white">R</text>
-  <text x="256" y="398" text-anchor="middle" font-size="92">🌹</text>
+  <rect width="512" height="512" rx="110" fill="#fff8f8"/>
+
+  <!-- 圓 -->
+  <circle cx="256" cy="210" r="120"
+          fill="none"
+          stroke="#C67B84"
+          stroke-width="6"/>
+
+  <!-- R -->
+  <text x="256"
+        y="245"
+        font-size="170"
+        font-family="Georgia, Times New Roman, serif"
+        font-weight="700"
+        fill="#B76B73"
+        text-anchor="middle">
+        R
+  </text>
+
+  <!-- Rose -->
+  <path d="
+  M335 250
+  C360 220 395 230 405 255
+  C415 285 395 305 365 315
+  C355 335 335 350 315 355
+  C330 330 325 315 310 300
+  C295 285 300 260 320 248
+  C330 242 338 243 345 248
+  Z"
+  fill="#D77A87"/>
+
+  <path d="
+  M315 355
+  C295 380 285 405 280 430"
+  stroke="#6D8C5A"
+  stroke-width="6"
+  fill="none"/>
+
+  <path d="
+  M295 390
+  C270 380 255 390 250 410
+  C270 405 285 405 295 390Z"
+  fill="#7BA66A"/>
+
+  <path d="
+  M290 420
+  C315 410 330 420 335 440
+  C315 435 300 435 290 420Z"
+  fill="#7BA66A"/>
+
+  <!-- ROSE -->
+  <text x="256"
+        y="455"
+        font-size="42"
+        letter-spacing="10"
+        font-family="Georgia, serif"
+        fill="#B76B73"
+        text-anchor="middle">
+        ROSE
+  </text>
+
 </svg>

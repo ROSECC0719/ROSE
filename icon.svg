@@ -1,58 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="118" fill="#FFF6F7"/>
+  <rect width="512" height="512" rx="118" fill="#FFF7F8"/>
 
-  <circle cx="256" cy="230" r="126"
-    fill="none"
-    stroke="#B76B73"
-    stroke-width="8"
-    stroke-linecap="round"
-    stroke-dasharray="690 120"
-    transform="rotate(-18 256 230)"/>
+  <circle cx="256" cy="226" r="128"
+          fill="none"
+          stroke="#B76B73"
+          stroke-width="7"
+          stroke-linecap="round"
+          stroke-dasharray="670 130"
+          transform="rotate(-18 256 226)"/>
 
-  <text x="256" y="280"
-    text-anchor="middle"
-    font-family="Georgia, 'Times New Roman', serif"
-    font-size="190"
-    font-weight="700"
-    fill="#B76B73">R</text>
+  <text x="256" y="286"
+        text-anchor="middle"
+        font-family="Georgia, Times New Roman, serif"
+        font-size="210"
+        font-weight="700"
+        fill="#B76B73">R</text>
 
-  <path d="M324 292
-           C342 268 379 270 394 298
-           C407 322 393 352 360 361
-           C332 368 310 348 310 322
-           C310 310 315 300 324 292Z"
-        fill="none"
-        stroke="#B76B73"
-        stroke-width="7"
-        stroke-linecap="round"
-        stroke-linejoin="round"/>
-
-  <path d="M333 311
-           C348 293 375 301 378 323
-           C362 318 345 322 333 338
-           C329 329 328 319 333 311Z"
-        fill="none"
-        stroke="#B76B73"
-        stroke-width="6"
-        stroke-linecap="round"
-        stroke-linejoin="round"/>
-
-  <path d="M328 360 C312 383 304 404 300 426"
-        fill="none"
-        stroke="#7A8F63"
-        stroke-width="7"
-        stroke-linecap="round"/>
-
-  <path d="M305 394 C282 384 264 396 260 416 C280 412 295 407 305 394Z"
-        fill="#7A8F63"/>
-
-  <path d="M302 421 C326 410 344 420 350 438 C327 437 313 432 302 421Z"
-        fill="#7A8F63"/>
-
-  <text x="256" y="462"
-    text-anchor="middle"
-    font-family="Georgia, 'Times New Roman', serif"
-    font-size="42"
-    letter-spacing="12"
-    fill="#B76B73">ROSE</text>
+  <text x="256" y="430"
+        text-anchor="middle"
+        font-family="Georgia, Times New Roman, serif"
+        font-size="44"
+        letter-spacing="13"
+        fill="#B76B73">ROSE</text>
 </svg>

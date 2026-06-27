@@ -25,8 +25,6 @@ function dashboard(){
         <div class="kpi"><small>THB</small><b>${st.thRate}</b></div>
       </div>
     </section>
-    ${countryButtons('asia','🌍 亞洲')}
-    ${countryButtons('world','🌎 歐美')}
     ${recentBlock()}
   `;
 }
@@ -137,6 +135,7 @@ function render(){
   document.querySelectorAll('[data-route]').forEach(el=>el.addEventListener('click',()=>setRoute(el.dataset.route)));
   document.querySelectorAll('[data-country]').forEach(el=>el.addEventListener('click',()=>setRoute('quote',el.dataset.country)));
   $('#clearRecent')?.addEventListener('click',()=>{clearRecents();render()});
+  quickBind();
   bindQuote(selectedCountry);
   bindFavorites();
   bindProfit();

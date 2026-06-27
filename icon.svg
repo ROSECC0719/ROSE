@@ -1,7 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="116" fill="#fff6f7"/>
-  <circle cx="256" cy="226" r="134" fill="none" stroke="#b76b73" stroke-width="7"/>
-  <text x="256" y="286" text-anchor="middle" font-family="Georgia, Times New Roman, serif" font-size="212" font-weight="700" fill="#b76b73">R</text>
-  <path d="M185 352 H327" stroke="#b76b73" stroke-width="5" stroke-linecap="round"/>
-  <text x="256" y="426" text-anchor="middle" font-family="Georgia, Times New Roman, serif" font-size="44" letter-spacing="13" fill="#b76b73">ROSE</text>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFF9F7"/>
+      <stop offset="100%" stop-color="#FCEDEF"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#bg)"/>
+  <circle cx="256" cy="226" r="134" fill="none" stroke="#A95F67" stroke-width="7"/>
+  <text x="256" y="286" text-anchor="middle" font-family="Georgia, Times New Roman, serif" font-size="212" font-weight="700" fill="#A95F67">R</text>
+  <path d="M185 352 H327" stroke="#A95F67" stroke-width="5" stroke-linecap="round"/>
+  <text x="256" y="426" text-anchor="middle" font-family="Georgia, Times New Roman, serif" font-size="44" letter-spacing="13" fill="#A95F67">ROSE</text>
 </svg>

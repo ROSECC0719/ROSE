@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- ROSE v3.0 Premium -->
+<!-- ROSE v3.1 Ultimate Settings -->
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8" />
@@ -23,6 +23,9 @@
     .tab.active{background:#a95f67}
     .money{color:#a95f67}
     .card{box-shadow:0 10px 28px #caa0a633;border:1px solid #f0d5d9}
+    .settings-group{background:#fff;border:1px solid #f0d5d9;border-radius:24px;padding:16px;margin:14px 0;box-shadow:0 10px 24px #d7a7aa22}
+    .settings-group h3{margin:0 0 10px;color:#9f5960;font-size:18px}
+    .quick-note{font-size:13px;color:#9a747a;line-height:1.7;margin:8px 0 0}
     .splash{position:fixed;inset:0;z-index:9999;background:linear-gradient(180deg,#fff8f7,#fff1f4);display:flex;align-items:center;justify-content:center;animation:fadeOut .8s ease 1.05s forwards}
     .splash-inner{text-align:center;color:#9f5960;font-family:Georgia,'Times New Roman',serif;letter-spacing:6px}
     .splash-inner img{width:112px;display:block;margin:0 auto 10px;filter:drop-shadow(0 10px 16px #d7a7aa55)}
@@ -36,7 +39,7 @@
 <div class="splash"><div class="splash-inner"><img src="icon.svg" alt="ROSE"><div class="splash-title">ROSE</div><div class="splash-sub">GLOBAL SHOPPING</div></div></div>
 <div class="app">
   <section id="home" class="page active">
-    <div class="top"><div class="logo"><img src="icon.svg" width="88" alt="ROSE"></div><div class="title">ROSE</div><div class="sub">Global Shopping Studio｜快速報價 v3.0</div></div>
+    <div class="top"><div class="logo"><img src="icon.svg" width="88" alt="ROSE"></div><div class="title">ROSE</div><div class="sub">Global Shopping Studio｜快速報價 v3.1</div></div>
     <div class="grid">
       <div class="group-title">🌍 亞洲代購</div>
       <button class="btn" onclick="show('jp')"><span>🇯🇵 日本</span><small>稅率 × 運費</small></button>
@@ -59,7 +62,7 @@
   <button class="tab active" onclick="show('home')">首頁</button><button class="tab" onclick="show('jp')">日本</button><button class="tab" onclick="show('kr')">韓國</button><button class="tab" onclick="show('th')">泰國</button><button class="tab" onclick="show('settings')">設定</button>
 </div></div>
 <script>
-const defaults={jpRate:.21,jpShips:[.20,.22,.24,.25,.27,.28],krQuFee:1.03,krQuRate1:39,krQuRate2:40,krQuAir1:.26,krQuAir2:.21,krQuSea:.16,krHongRate1:40,krHongRate2:42,krHongAir:.23,krHongSea:.146,thRate:1,thShip:.17,thWeightShip:.18,usRate:32,usFeeA:1.08,usShipA:180,usFeeB:1.07,usShipB:5,hkRateCost:3.8,hkRateWholesale:5,hkBuyerFee:0,hkBuyerFeeWholesale:30,hkShipRateCost:4.2,hkShipRateWholesale:5,hkShipPerG:.15,auRate:23,auShip:.175,czRate:1.4,czShip:.3};
+const defaults={jpRate:.21,jpShips:[.20,.22,.24,.25,.27,.28],krQuRate1:39,krQuRate2:40,krQuShip1:0,krQuShip2:0,krInnRate1:40,krInnRate2:42,krInnShip1:0,krInnShip2:0,krAirShip:0,krSeaShip:0,thRate:1,thShip:.1,thWeightShip:.1,usRate:32,usShip:0,hkCost:3.8,hkRate:5,hkWeightCost:4.2,hkWeightRate:5,auRate:23,auWeight:30,czRate:1.35,czShip:0};
 let st=JSON.parse(localStorage.getItem('roseSettings')||localStorage.getItem('abbySettings')||'{}'); st={...defaults,...st};
 const fmt=n=>'NT$ '+(isFinite(n)?Math.round(n).toLocaleString('zh-TW'):'0');
 const fmt2=n=>'NT$ '+(isFinite(n)?Math.round(n).toLocaleString('zh-TW'):'0');
@@ -70,8 +73,8 @@ function input(id,label,unit,val=0){return `<div class="field"><label>${label}</
 function jpCost(p,w,tax,ship){return p*tax*st.jpRate+w*ship}
 function renderJP(){document.getElementById('jp').innerHTML=nav('🇯🇵 日本報價')+`<div class="panel">${input('jpPrice','商品價格（日幣）','¥',100)}${input('jpWeight','重量','g',100)}<button class="primary" onclick="calcAll()">開始計算</button><button class="settings-link" onclick="show('settings')">調整日本匯率 / 運費</button></div><div id="jpResults" class="result-grid"></div>`;calcAll()}
 function calcJP(){let p=+document.getElementById('jpPrice')?.value||0,w=+document.getElementById('jpWeight')?.value||0;let html=`<div class="panel kpi"><div class="row">商品<b>¥ ${p.toLocaleString()}</b></div><div class="row">重量<b>${w} g</b></div></div>`;st.jpShips.forEach(ship=>{let a=jpCost(p,w,1.1,ship),b=jpCost(p,w,1.08,ship),c=jpCost(p,w,1,ship);html+=`<div class="card"><h3>運費 ${ship.toFixed(2)}</h3><div class="row"><span>10%稅 成本</span><span class="money">${fmt(a)}</span></div><div class="row"><span>8%稅 成本</span><span class="money">${fmt(b)}</span></div><div class="row"><span>稅込 成本</span><span class="money">${fmt(c)}</span></div></div>`});document.getElementById('jpResults').innerHTML=html}
-function renderKR(){document.getElementById('kr').innerHTML=nav('🇰🇷 韓國報價')+`<div class="panel"><span class="pill">QU 模式</span>${input('krQuPrice','韓元價格','₩',28000)}${input('krQuWeight','重量','g',900)}<span class="pill">INN 模式</span>${input('krHongPrice','韓元價格','₩',10000)}${input('krHongWeight','重量','g',200)}<button class="primary" onclick="calcAll()">開始計算</button></div><div id="krResults" class="result-grid"></div>`;calcAll()}
-function calcKR(){let p=+document.getElementById('krQuPrice')?.value||0,w=+document.getElementById('krQuWeight')?.value||0,hp=+document.getElementById('krHongPrice')?.value||0,hw=+document.getElementById('krHongWeight')?.value||0;let qAir1=p*st.krQuFee/st.krQuRate1+w*st.krQuAir1,qAir2=p*st.krQuFee/st.krQuRate2+w*st.krQuAir2,qSea1=p*st.krQuFee/st.krQuRate1+w*st.krQuSea,qSea2=p*st.krQuFee/st.krQuRate2+w*st.krQuSea;let hAir1=hp/st.krHongRate1+hw*st.krHongAir,hAir2=hp/st.krHongRate2+hw*st.krHongAir,hSea1=hp/st.krHongRate1+hw*st.krHongSea,hSea2=hp/st.krHongRate2+hw*st.krHongSea;document.getElementById('krResults').innerHTML=`<div class="card"><h3>QU 空運</h3><div class="row"><span>匯率 ${st.krQuRate1}</span><span class="money">${fmt(qAir1)}</span></div><div class="row"><span>匯率 ${st.krQuRate2}</span><span class="money">${fmt(qAir2)}</span></div></div><div class="card"><h3>QU 海運</h3><div class="row"><span>匯率 ${st.krQuRate1}</span><span class="money">${fmt(qSea1)}</span></div><div class="row"><span>匯率 ${st.krQuRate2}</span><span class="money">${fmt(qSea2)}</span></div></div><div class="card"><h3>INN 空運</h3><div class="row"><span>匯率 ${st.krHongRate1}</span><span class="money">${fmt(hAir1)}</span></div><div class="row"><span>匯率 ${st.krHongRate2}</span><span class="money">${fmt(hAir2)}</span></div></div><div class="card"><h3>INN 海運</h3><div class="row"><span>匯率 ${st.krHongRate1}</span><span class="money">${fmt(hSea1)}</span></div><div class="row"><span>匯率 ${st.krHongRate2}</span><span class="money">${fmt(hSea2)}</span></div></div>`}
+function renderKR(){document.getElementById('kr').innerHTML=nav('🇰🇷 韓國報價')+'<div class="panel"><span class="pill">QU 模式</span>'+input('krQuPrice','韓元價格','₩',1000)+input('krQuWeight','重量','g',100)+calcBtn('calcKR()')+'<span class="pill">INN 模式</span>'+input('krInnPrice','韓元價格','₩',1000)+input('krInnWeight','重量','g',100)+calcBtn('calcKR()')+'</div><div id="krResults"></div>'}
+function calcKR(){let qp=+document.getElementById('krQuPrice')?.value||0,qw=+document.getElementById('krQuWeight')?.value||0,ip=+document.getElementById('krInnPrice')?.value||0,iw=+document.getElementById('krInnWeight')?.value||0;let q1=qp/st.krQuRate1+qw*st.krQuShip1,q2=qp/st.krQuRate2+qw*st.krQuShip2,i1=ip/st.krInnRate1+iw*st.krInnShip1,i2=ip/st.krInnRate2+iw*st.krInnShip2;document.getElementById('krResults').innerHTML=`<div class="card"><h3>QU</h3><div class="row"><span>匯率 ${st.krQuRate1} / 運費 ${st.krQuShip1}</span><span class="money">${fmt(q1)}</span></div><div class="row"><span>匯率 ${st.krQuRate2} / 運費 ${st.krQuShip2}</span><span class="money">${fmt(q2)}</span></div></div><div class="card"><h3>INN</h3><div class="row"><span>匯率 ${st.krInnRate1} / 運費 ${st.krInnShip1}</span><span class="money">${fmt(i1)}</span></div><div class="row"><span>匯率 ${st.krInnRate2} / 運費 ${st.krInnShip2}</span><span class="money">${fmt(i2)}</span></div></div>`}
 function renderTH(){document.getElementById('th').innerHTML=nav('🇹🇭 泰國報價')+`<div class="panel"><span class="pill">有代購費</span>${input('thPrice','泰銖價格','฿',100)}${input('thWeight','重量','g',100)}<span class="pill">無代購費</span>${input('thWPrice','泰銖價格','฿',210)}${input('thWWeight','重量','g',400)}<button class="primary" onclick="calcAll()">開始計算</button></div><div id="thResults" class="result-grid"></div>`;calcAll()}
 function calcTH(){let p=+document.getElementById('thPrice')?.value||0,w=+document.getElementById('thWeight')?.value||0,wp=+document.getElementById('thWPrice')?.value||0,ww=+document.getElementById('thWWeight')?.value||0;let cost=Math.round(p*1.1*st.thRate+w*st.thShip);let base=Math.round(wp*st.thRate+ww*st.thShip);let agent=Math.round(base*1.1);document.getElementById('thResults').innerHTML=`<div class="card"><h3>有代購費</h3><div class="row"><span>成本</span><span class="money">${fmt(cost)}</span></div></div><div class="card"><h3>無代購費</h3><div class="row"><span>成本</span><span class="money">${fmt(base)}</span></div><div class="row"><span>代購費10%</span><span>${fmt(agent)}</span></div></div>`}
 
@@ -83,9 +86,17 @@ function renderAU(){document.getElementById('au').innerHTML=nav('🇦🇺 澳洲
 function calcAU(){let p=+document.getElementById('auPrice')?.value||0,w=+document.getElementById('auWeight')?.value||0;let res=p*st.auRate+w*st.auShip;document.getElementById('auResults').innerHTML=`<div class="card"><h3>澳洲小計</h3><div class="row"><span>結果</span><span class="money">${fmt2(res)}</span></div></div>`}
 function renderCZ(){document.getElementById('cz').innerHTML=nav('🇨🇿 捷克報價')+`<div class="panel">${input('czPrice','克朗價格','Kč',119.9)}${input('czWeight','重量','g',150)}<button class="primary" onclick="calcAll()">開始計算</button></div><div id="czResults" class="result-grid"></div>`;calcAll()}
 function calcCZ(){let p=+document.getElementById('czPrice')?.value||0,w=+document.getElementById('czWeight')?.value||0;let res=p*st.czRate+w*st.czShip;document.getElementById('czResults').innerHTML=`<div class="card"><h3>捷克小計</h3><div class="row"><span>結果</span><span class="money">${fmt2(res)}</span></div></div>`}
-function renderSettings(){let fields=[['jpRate','日幣匯率'],['krQuRate1','韓國QU匯率1'],['krQuRate2','韓國QU匯率2'],['krHongRate1','韓國INN匯率1'],['krHongRate2','韓國INN匯率2'],['thRate','泰銖匯率'],['usRate','美金匯率'],['hkRateCost','港幣成本匯率'],['hkRateWholesale','港幣批價匯率'],['hkShipRateCost','香港重量成本匯率'],['hkShipRateWholesale','香港重量批價匯率'],['auRate','澳幣匯率'],['czRate','捷克匯率']]; let shipHtml=st.jpShips.map((v,i)=>`<div class="setting-row"><label>日本運費 ${i+1}</label><input id="jpShip${i}" type="number" step="0.01" value="${v}"></div>`).join('');document.getElementById('settings').innerHTML=nav('⚙️ 設定')+`<div class="panel"><div class="settings-table">${fields.map(([k,l])=>`<div class="setting-row"><label>${l}</label><input id="set_${k}" type="number" step="0.001" value="${st[k]}"></div>`).join('')}${shipHtml}</div><button class="primary" style="margin-top:16px" onclick="saveSettings()">儲存設定</button><p class="note">設定會存在這台手機/電腦的瀏覽器裡。換裝置要重新設定。</p></div>`}
-function saveSettings(){['jpRate','krQuRate1','krQuRate2','krHongRate1','krHongRate2','thRate','usRate','hkRateCost','hkRateWholesale','hkShipRateCost','hkShipRateWholesale','auRate','czRate'].forEach(k=>{let el=document.getElementById('set_'+k); if(el) st[k]=+el.value||st[k]});st.jpShips=st.jpShips.map((_,i)=>+document.getElementById('jpShip'+i).value||0);save();alert('已儲存設定');renderAll();show('settings')}
-function calcAll(){if(document.getElementById('jpResults'))calcJP();if(document.getElementById('krResults'))calcKR();if(document.getElementById('thResults'))calcTH();if(document.getElementById('usResults'))calcUS();if(document.getElementById('hkResults'))calcHK();if(document.getElementById('auResults'))calcAU();if(document.getElementById('czResults'))calcCZ()}
+function renderSettings(){let jpShips=(st.jpShips||defaults.jpShips).join(',');let groups=[
+['🇯🇵 日本',{jpRate:'日幣匯率',jpShipsText:'日本運費列表'}],
+['🇰🇷 韓國 QU',{krQuRate1:'QU 匯率1',krQuShip1:'QU 運費1 / 每g',krQuRate2:'QU 匯率2',krQuShip2:'QU 運費2 / 每g'}],
+['🇰🇷 韓國 INN',{krInnRate1:'INN 匯率1',krInnShip1:'INN 運費1 / 每g',krInnRate2:'INN 匯率2',krInnShip2:'INN 運費2 / 每g'}],
+['🇹🇭 泰國',{thRate:'泰銖匯率',thShip:'有代購運費 / 每g',thWeightShip:'無代購運費 / 每g'}],
+['🇺🇸 美國',{usRate:'美金匯率',usShip:'美國運費'}],
+['🇭🇰 香港',{hkCost:'港幣成本匯率',hkRate:'港幣批價匯率',hkWeightCost:'香港重量成本匯率',hkWeightRate:'香港重量批價匯率'}],
+['🇦🇺 澳洲',{auRate:'澳幣匯率',auWeight:'澳洲運費'}],
+['🇨🇿 捷克',{czRate:'捷克匯率',czShip:'捷克運費'}]
+];let html=nav('⚙️ 設定')+'<div class="panel"><p class="quick-note">日本運費請用逗號分隔，例如：0.20,0.22,0.24,0.25,0.27,0.28。韓國運費可填每 g 運費；不用運費就填 0。</p>';groups.forEach(([title,items])=>{html+=`<div class="settings-group"><h3>${title}</h3>`;Object.entries(items).forEach(([k,label])=>{let val=k==='jpShipsText'?jpShips:(st[k]??defaults[k]??0);html+=`<div class="row"><span>${label}</span><input id="set_${k}" type="text" value="${val}"></div>`});html+='</div>'});html+='<button class="primary" onclick="saveSettings()">儲存設定</button></div>';document.getElementById('settings').innerHTML=html}
+function saveSettings(){Object.keys(defaults).forEach(k=>{let el=document.getElementById('set_'+k);if(el){st[k]=+el.value}});let jp=document.getElementById('set_jpShipsText');if(jp){let arr=jp.value.split(',').map(x=>+x.trim()).filter(x=>isFinite(x));if(arr.length)st.jpShips=arr}localStorage.setItem('roseSettings',JSON.stringify(st));alert('設定已儲存');renderAll()}
 function renderAll(){renderJP();renderKR();renderTH();renderUS();renderHK();renderAU();renderCZ();renderSettings()}
 renderAll();
 if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{})}

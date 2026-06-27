@@ -137,7 +137,6 @@ function render(){
   document.querySelectorAll('[data-route]').forEach(el=>el.addEventListener('click',()=>setRoute(el.dataset.route)));
   document.querySelectorAll('[data-country]').forEach(el=>el.addEventListener('click',()=>setRoute('quote',el.dataset.country)));
   $('#clearRecent')?.addEventListener('click',()=>{clearRecents();render()});
-  quickBind();
   bindQuote(selectedCountry);
   bindFavorites();
   bindProfit();

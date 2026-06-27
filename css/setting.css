@@ -1,0 +1,7 @@
+.settings-group{background:#fff;border:1px solid #f0d5d9;border-radius:24px;padding:16px;margin:14px 0;box-shadow:0 10px 24px #d7a7aa22}
+.settings-group h3{margin:0 0 10px;color:#9f5960;font-size:18px}
+.setting-row{display:grid;grid-template-columns:1fr 130px;gap:10px;align-items:center;background:#ffffffcc;margin:8px 0;padding:10px 12px;border-radius:16px;font-weight:850}
+.setting-row label{color:#71545a}
+.setting-row input{border:1px solid var(--line);border-radius:12px;padding:10px;font-size:16px;min-width:0}
+.setting-hint{font-size:13px;color:var(--muted);line-height:1.7;background:#fff7f8;border:1px dashed var(--line);border-radius:16px;padding:10px 12px;margin:0 0 12px}
+.danger{background:#fff;border:1px solid #f1c8ce;color:#9f5960;border-radius:16px;padding:11px 12px;font-weight:850;width:100%;margin-top:8px}

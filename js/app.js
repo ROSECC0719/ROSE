@@ -25,12 +25,6 @@ function dashboard(){
         <div class="kpi"><small>THB</small><b>${st.thRate}</b></div>
       </div>
     </section>
-    <section class="panel">
-      <div class="section-title">快速報價</div>
-      ${input('quickPrice','價格','',1000)}
-      ${input('quickWeight','重量','g',100)}
-      
-    </section>
     ${countryButtons('asia','🌍 亞洲')}
     ${countryButtons('world','🌎 歐美')}
     ${recentBlock()}

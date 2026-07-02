@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rose-v4-2-offline-1';
+const CACHE_NAME = 'rose-v4-3-work';
 const ASSETS = ['./','./index.html','./manifest.json','./icon.svg','./sw.js'];
 
 self.addEventListener('install', event => {
